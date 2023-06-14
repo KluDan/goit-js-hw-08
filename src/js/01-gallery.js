@@ -4,8 +4,6 @@ import { galleryItems } from './gallery-items';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-console.log(galleryItems);
-
 const galleryEl = document.querySelector(".gallery");
 const createListItem = ({ preview, original, description }) => {
   return `
@@ -20,16 +18,8 @@ const createListItem = ({ preview, original, description }) => {
 const listItem = galleryItems.map(createListItem).join("");
 galleryEl.insertAdjacentHTML("beforeend", listItem);
 
-galleryEl.addEventListener('click', onImageClick);
-
-function onImageClick(e) {
-    e.preventDefault();
-    if(e.target.nodeName !== 'IMG'){
-      return;
-    }
-    new SimpleLightbox('.gallery a',
-    {
-      captionDelay:250,
-      captionsData:'alt'
-    });
-}
+new SimpleLightbox('.gallery a',
+{
+    captionDelay:250,
+    captionsData:'alt',
+});
